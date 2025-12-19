@@ -1,0 +1,20 @@
+import dis
+def square(x):
+    return x * x
+
+print("Bytecode for square(x):")
+dis.dis(square)
+print("\n")
+
+def add(a, b):
+    return a + b
+
+print("Bytecode for add(a, b):")
+dis.dis(add)
+print("\n")
+
+def multiply(a, b):
+    return a * b
+
+print("Bytecode for multiply(a, b):")
+dis.dis(multiply)
