@@ -1,0 +1,59 @@
+numpy operation
+import numpy as np
+
+arr = np.arange(1, 11)
+
+print("Mean:", np.mean(arr))
+print("Median:", np.median(arr))
+print("Standard Deviation:", np.std(arr))
+-------------------------------
+pandas filtering
+  import pandas as pd
+
+data = {
+    "Name": ["Ali", "Mona", "Sara", "Omar"],
+    "Age": [20, 22, 21, 23],
+    "Score": [85, 75, 92, 60]
+}
+
+df = pd.DataFrame(data)
+
+filtered = df[df["Score"] > 80]
+print(filtered)
+  ----------------------------------------------
+  visualisation eith matplotlib
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+
+plt.plot(x, y)
+plt.xlabel("X Values")
+plt.ylabel("Y Values")
+plt.title("Line Graph Example")
+plt.show()
+  ---------------------------------------------
+  flask application
+  from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/hello")
+def hello():
+    return "Hello, Advanced Python!"
+
+if __name__ == "__main__":
+    app.run()
+  
+  -------------------------------------------
+  pytorch tensor operations
+import torch
+
+a = torch.tensor([1, 2, 3])
+b = torch.tensor([4, 5, 6])
+
+dot = torch.dot(a, b)
+mul = a * b
+
+print("Dot Product:", dot)
+print("Element-wise Multiplication:", mul)
