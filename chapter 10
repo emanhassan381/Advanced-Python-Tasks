@@ -1,0 +1,86 @@
+context manager
+import time
+
+class Timer:
+    def __enter__(self):
+        self.start_time = time.time()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        end_time = time.time()
+        elapsed = end_time - self.start_time
+        print(f"Execution took {elapsed:.5f} seconds")
+
+
+with Timer():
+    for i in range(1000000):
+        pass
+---------------------------------
+  generator
+  def even_numbers(n):
+    for i in range(2, n+1, 2):
+        yield i
+
+
+for num in even_numbers(10):
+    print(num)
+  --------------------------------------
+  coroutine
+  def filter_positive():
+    while True:
+        number = (yield)
+        if number > 0:
+            print(f"Positive number: {number}")
+
+
+co = filter_positive()
+next(co)      # Initialize the coroutine
+co.send(-3)
+co.send(5)
+co.send(0)
+  ------------------------------------------------------
+  factory pattern
+class Circle:
+    def draw(self):
+        print("Drawing a Circle")
+
+class Square:
+    def draw(self):
+        print("Drawing a Square")
+
+def shape_factory(shape_type):
+    if shape_type.lower() == "circle":
+        return Circle()
+    elif shape_type.lower() == "square":
+        return Square()
+    else:
+        raise ValueError("Unknown shape type")
+
+
+shape = shape_factory("circle")
+shape.draw()
+  -------------------------------------------------
+  observer pattern
+class Observer:
+    def update(self, message):
+        print(f"Received update: {message}")
+
+class Subject:
+    def __init__(self):
+        self.observers = []
+
+    def attach(self, observer):
+        self.observers.append(observer)
+
+    def notify(self, message):
+        for observer in self.observers:
+            observer.update(message)
+
+subject = Subject()
+obs1 = Observer()
+obs2 = Observer()
+
+subject.attach(obs1)
+subject.attach(obs2)
+
+subject.notify("Update available!")
