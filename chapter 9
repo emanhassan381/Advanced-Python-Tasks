@@ -1,0 +1,97 @@
+fetch a web bage
+import requests
+from bs4 import BeautifulSoup
+
+
+url = "https://example.com"
+response = requests.get(url)
+
+
+soup = BeautifulSoup(response.text, "html.parser")
+
+
+title = soup.title.string
+print("Page Title:", title)
+--------------------------------
+  extract all links
+import requests
+from bs4 import BeautifulSoup
+
+
+url = "https://example.com"
+response = requests.get(url)
+
+soup = BeautifulSoup(response.text, "html.parser")
+
+
+links = [a['href'] for a in soup.find_all('a', href=True)]
+
+
+for link in links:
+    print(link)
+  ------------------------------
+  extract a table
+from bs4 import BeautifulSoup
+
+html = """
+<table>
+<tr><th>Name</th><th>Age</th></tr>
+<tr><td>Alice</td><td>25</td></tr>
+<tr><td>Bob</td><td>30</td></tr>
+</table>
+"""
+
+soup = BeautifulSoup(html, "html.parser")
+
+
+rows = soup.find_all("tr")
+for row in rows:
+    cells = row.find_all(['th', 'td'])
+    data = [cell.get_text() for cell in cells]
+    print(data)
+  ------------------------------------
+  automate google search
+  from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+driver = webdriver.Chrome()
+
+
+driver.get("https://www.google.com")
+
+search_box = driver.find_element(By.NAME, "q")
+search_box.send_keys("Python Web Scraping")
+search_box.send_keys(Keys.RETURN)
+
+time.sleep(3)
+
+print(driver.title)
+
+driver.quit()
+  ---------------------------------
+  save scraped data to csv
+  from bs4 import BeautifulSoup
+import csv
+
+html = """
+<ul>
+<li>Apple</li>
+<li>Banana</li>
+<li>Cherry</li>
+</ul>
+"""
+
+soup = BeautifulSoup(html, "html.parser")
+
+fruits = [li.get_text() for li in soup.find_all('li')]
+
+
+with open('fruits.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Fruit'])  # Header
+    for fruit in fruits:
+        writer.writerow([fruit])
+
+print("Fruits saved to fruits.csv")
