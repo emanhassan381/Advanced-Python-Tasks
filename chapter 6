@@ -1,0 +1,65 @@
+csv handling
+import csv
+
+
+with open('students.csv', 'r') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        if int(row['Grade']) > 80:
+            print(row['Name'])
+------------------------------------
+  json handling
+  import json
+
+data = {
+    "course": "Python",
+    "duration": "3 months",
+    "student": ["Ali", "Sara"]
+}
+
+with open('course.json', 'w') as f:
+    json.dump(data, f, indent=4)
+
+with open('course.json', 'r') as f:
+    loaded_data = json.load(f)
+
+print(loaded_data['student'])
+  -------------------------------------------
+excel  handling
+  import pandas as pd
+employees = pd.DataFrame({
+    'ID': [1, 2, 3],
+    'Name': ['Eman', 'Mahmoud', 'Ahmed'],
+    'Salary': [20000, 19000, 14000]
+})
+
+
+employees.to_excel('employees.xlsx', index=False)
+
+df = pd.read_excel('employees.xlsx')
+
+print(df[['Name', 'Salary']])
+  
+--------------------------------
+  data transformation
+  import csv
+import json
+
+def csv_to_json(csv_file, json_file):
+    people = []
+
+  
+    with open(csv_file, 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            people.append({
+                "Name": row['Name'],
+                "Age": int(row['Age']),
+                "City": row['City']
+            })
+
+   
+    with open(json_file, 'w') as f:
+        json.dump({"people": people}, f, indent=4)
+
+csv_to_json('people.csv', 'people.json')
