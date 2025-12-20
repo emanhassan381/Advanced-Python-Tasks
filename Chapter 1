@@ -1,9 +1,62 @@
-de
+Bytecode :
+import dis
+def square(x):
+    return x * x
+
+print("Bytecode for square(x):")
+dis.dis(square)
+print("\n")
+
+def add(a, b):
+    return a + b
+
+print("Bytecode for add(a, b):")
+dis.dis(add)
+print("\n")
+
+def multiply(a, b):
+    return a * b
+
+print("Bytecode for multiply(a, b):")
+dis.dis(multiply)
+---------------------------------------------
+Dynamic Typing in action
+
+data = 42
+print("Value:", data, "Type:", type(data))
+
+
+data = [1, 2, 3]
+print("Value:", data, "Type:", type(data))
+
+def my_func():
+    pass
+
+data = my_func
+print("Value:", data, "Type:", type(data))
+--------------------------------------------
+abstract syntax Tree
+import ast
+
+code = "y = (4 * 5) - 3"
+
+tree = ast.parse(code)
+
+print(ast.dump(tree, indent=4))
+---------------------------------------
+mutability and object identity
+my_list = [10, 20, 30]
+print("Before append:", my_list, "ID:", id(my_list))
+
+my_list.append(40)
+
+print("After append:", my_list, "ID:", id(my_list))
 
 
 
 
 
-nn
+
+
 
 
