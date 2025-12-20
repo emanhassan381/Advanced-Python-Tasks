@@ -1,20 +1,204 @@
+class Vector3D:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __add__(self, other):
+        return Vector3D(self.x + other.x,
+                        self.y + other.y,
+                        self.z + other.z)
+
+    def __sub__(self, other):
+        return Vector3D(self.x - other.x,
+                        self.y - other.y,
+                        self.z - other.z)
+
+    def __mul__(self, other):
+        return self.x * other.x + self.y * other.y + self.z * other.z
+
+
+    def __repr__(self):
+        return f"Vector3D({self.x}, {self.y}, {self.z})"
+
+
+#  Test
+
+v1 = Vector3D(1, 2, 3)
+v2 = Vector3D(4, 5, 6)
+
+# Addition
+v_add = v1 + v2
+print("v1 + v2 =", v_add)
+
+# Subtraction
+v_sub = v1 - v2
+print("v1 - v2 =", v_sub)
+
+# Dot Product
+v_dot = v1 * v2
+print("v1 · v2 =", v_dot)
+---------------------------------------------
+positive number descriptor 
+class Positive:
+    def __set_name__(self, owner, name):
+        self.name = "_" + name 
+
+    def __get__(self, instance, owner):
+        return getattr(instance, self.name)
+
+    def __set__(self, instance, value):
+        if value < 0:
+            raise ValueError(f"{self.name[1:]} must be zero or positive")
+        setattr(instance, self.name, value)
+
+
+class BankAccount:
+    balance = Positive()  
+
+    def __init__(self, balance=0):
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        self.balance -= amount
+
+
+account = BankAccount(100)
+print("Initial balance:", account.balance)
+
+account.deposit(50)
+print("After deposit:", account.balance)
+
+account.withdraw(120)
+print("After withdrawal:", account.balance)
+
+try:
+    account.balance = -10
+except ValueError as e:
+    print("Error:", e)
+----------------------------------------------
+point class with slots
+class Point:
+    __slots__ = ['x', 'y']  
+
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+
+
+p = Point()
+p.x = 10
+p.y = 20
+print("Point coordinates:", p.x, p.y)
+
+try:
+    p.z = 5
+except AttributeError as e:
+    print("Error:", e)
+------------------------------
+disassembling a simple function
 import dis
-def square(x):
-    return x * x
 
-print("Bytecode for square(x):")
-dis.dis(square)
-print("\n")
-
-def add(a, b):
+def calculate_sum(a, b):
     return a + b
 
-print("Bytecode for add(a, b):")
-dis.dis(add)
-print("\n")
+dis.dis(calculate_sum)
 
-def multiply(a, b):
-    return a * b
 
-print("Bytecode for multiply(a, b):")
-dis.dis(multiply)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
