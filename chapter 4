@@ -1,0 +1,119 @@
+validate email 
+import re
+
+emails = ["user@example.com", "bad-email", "test@domain.org"]
+
+pattern = r'^[A-Za-z0-9._]+@[A-Za-z0-9.-]+\.(com|org|edu)$'
+
+for email in emails:
+    if re.match(pattern, email):
+        print(f"{email} → Valid")
+    else:
+        print(f"{email} → Invalid")
+  ----------------------------------
+  extract hashtag
+import re
+
+text = "I love #Python and #AI"
+
+pattern = r'#\w+'
+
+
+hashtags = re.findall(pattern, text)
+
+print(hashtags)
+-------------------------------
+validate phone number
+import re
+
+phone_numbers = ["+1-555-1234", "123-456-7890", "5551234"]
+pattern = r'^(\+\d-\d{3}-\d{4}|\d{3}-\d{3}-\d{4})$'
+
+for number in phone_numbers:
+    if re.match(pattern, number):
+        print(f"{number} → Valid")
+    else:
+        print(f"{number} → Invalid")
+  --------------------------------------
+word frequency
+import re
+from collections import Counter
+
+text = "Python, Python! AI is great; Python AI."
+
+words = re.findall(r'\b\w+\b', text)
+
+freq = Counter(words)
+
+print(freq)
+--------------------------------------------
+find doublicate
+import re
+
+text = "This is is a test test"
+
+pattern = r'\b(\w+)\s+\1\b'
+
+duplicates = re.findall(pattern, text)
+
+full_duplicates = [f"{word} {word}" for word in duplicates]
+
+print(full_duplicates)
+  ----------------------------------------
+  extract dates
+  import re
+
+text = "The events are on 2023-05-12 and 2024-01-01."
+
+pattern = r'\b\d{4}-\d{2}-\d{2}\b'
+
+dates = re.findall(pattern, text)
+
+print(dates)
+----------------------------
+mask senestive data
+import re
+
+text = "Card: 1234-5678-9012-3456"
+
+masked = re.sub(r'\d(?=\d{4})', '*', text)
+
+print(masked)
+------------------------------
+extract programming  language
+import re
+
+text = "I know Python, Java, and C++ but not Ruby."
+pattern = r'\b[A-Z][A-Za-z\+]*\b'
+
+languages = re.findall(pattern, text)
+
+print(languages)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
